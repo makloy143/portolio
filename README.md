@@ -1,73 +1,110 @@
-# React + TypeScript + Vite
+# Mark Louie Carnaje - Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website showcasing my work, skills, and experience as a Full Stack Web Developer. Built with React, TypeScript, and Vite for optimal performance and developer experience.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Fully responsive layout that works seamlessly across all devices
+- **Smooth Scrolling**: Interactive navigation with smooth scroll animations
+- **Active Section Tracking**: Navigation highlights the current section as you scroll
+- **Modern UI/UX**: Clean, professional design with engaging animations
+- **Performance Optimized**: Built with Vite for lightning-fast development and production builds
+- **Type-Safe**: Written in TypeScript for better code quality and maintainability
 
-## React Compiler
+## 📋 Sections
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Home**: Hero section with introduction and call-to-action buttons
+- **About**: Personal information, background, and statistics
+- **Skills**: Comprehensive list of technologies and tools across frontend, backend, and DevOps
+- **Projects**: Showcase of featured projects with descriptions and tech stacks
+- **Contact**: Contact form and social media links
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend Framework**: React 19
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: CSS3
+- **Code Quality**: ESLint
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+```bash
+git clone https://github.com/makloy143/makloy-portfolio.git
+cd makloy-portfolio
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+npm install
 ```
+
+## 🚦 Usage
+
+### Development
+
+Start the development server:
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173` (or the next available port).
+
+### Build
+
+Create a production build:
+```bash
+npm run build
+```
+
+The optimized files will be in the `dist` directory.
+
+### Preview
+
+Preview the production build locally:
+```bash
+npm run preview
+```
+
+### Linting
+
+Run ESLint to check for code quality issues:
+```bash
+npm run lint
+```
+
+## 📁 Project Structure
+
+```
+makloy-portfolio/
+├── public/          # Static assets
+├── src/
+│   ├── assets/      # Images and other assets
+│   ├── App.tsx      # Main application component
+│   ├── App.css      # Application styles
+│   ├── index.css    # Global styles
+│   └── main.tsx     # Application entry point
+├── index.html       # HTML template
+├── package.json     # Dependencies and scripts
+├── tsconfig.json    # TypeScript configuration
+└── vite.config.ts   # Vite configuration
+```
+
+## 🌐 Live Demo
+
+Visit the live portfolio at: [Your Portfolio URL]
+
+## 📧 Contact
+
+- **Email**: mcsjmtech@gmail.com
+- **LinkedIn**: [Mark Louie Carnaje](https://www.linkedin.com/in/mark-louie-carnaje-983514198/)
+- **GitHub**: [makloy143](https://github.com/makloy143)
+
+## 📄 License
+
+This project is private and proprietary. All rights reserved.
+
+---
+
+Built with ❤️ using React, TypeScript, and Vite
