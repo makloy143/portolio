@@ -1,110 +1,60 @@
-# Mark Louie Carnaje - Portfolio Website
+# Mark Louie Carnaje — Portfolio
 
-A modern, responsive portfolio website showcasing my work, skills, and experience as a Full Stack Web Developer. Built with React, TypeScript, and Vite for optimal performance and developer experience.
+A modern, professional portfolio website built with **Next.js**, TypeScript, and Tailwind CSS. Showcases skills, projects, and experience as a Full Stack Web Developer available for remote work.
 
-## 🚀 Features
+## Features
 
-- **Responsive Design**: Fully responsive layout that works seamlessly across all devices
-- **Smooth Scrolling**: Interactive navigation with smooth scroll animations
-- **Active Section Tracking**: Navigation highlights the current section as you scroll
-- **Modern UI/UX**: Clean, professional design with engaging animations
-- **Performance Optimized**: Built with Vite for lightning-fast development and production builds
-- **Type-Safe**: Written in TypeScript for better code quality and maintainability
+- **Next.js App Router** — Server-rendered with optimized performance and SEO
+- **Responsive Design** — Works seamlessly across desktop, tablet, and mobile
+- **Dark / Light Mode** — Theme toggle with system preference support
+- **Smooth Animations** — Framer Motion for polished interactions
+- **Modular Architecture** — Clean component structure for easy maintenance
 
-## 📋 Sections
+## Sections
 
-- **Home**: Hero section with introduction and call-to-action buttons
-- **About**: Personal information, background, and statistics
-- **Skills**: Comprehensive list of technologies and tools across frontend, backend, and DevOps
-- **Projects**: Showcase of featured projects with descriptions and tech stacks
-- **Contact**: Contact form and social media links
+- **Home** — Hero with availability badge and key highlights
+- **About** — Background, stats, and resume download
+- **Skills** — Frontend, backend, and tools proficiency
+- **Projects** — Featured portfolio work with tech stacks
+- **Experience** — Work history timeline
+- **Contact** — Contact form and social links
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Frontend Framework**: React 19
+- **Framework**: Next.js 15
 - **Language**: TypeScript
-- **Build Tool**: Vite
-- **Styling**: CSS3
-- **Code Quality**: ESLint
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Theming**: next-themes
 
-## 📦 Installation
+## Getting Started
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/makloy143/makloy-portfolio.git
-cd makloy-portfolio
-```
-
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-## 🚦 Usage
-
-### Development
-
-Start the development server:
-```bash
+# Start development server
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173` (or the next available port).
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build
+## Scripts
 
-Create a production build:
-```bash
-npm run build
-```
+| Command       | Description              |
+| ------------- | ------------------------ |
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint              |
 
-The optimized files will be in the `dist` directory.
-
-### Preview
-
-Preview the production build locally:
-```bash
-npm run preview
-```
-
-### Linting
-
-Run ESLint to check for code quality issues:
-```bash
-npm run lint
-```
-
-## 📁 Project Structure
-
-```
-makloy-portfolio/
-├── public/          # Static assets
-├── src/
-│   ├── assets/      # Images and other assets
-│   ├── App.tsx      # Main application component
-│   ├── App.css      # Application styles
-│   ├── index.css    # Global styles
-│   └── main.tsx     # Application entry point
-├── index.html       # HTML template
-├── package.json     # Dependencies and scripts
-├── tsconfig.json    # TypeScript configuration
-└── vite.config.ts   # Vite configuration
-```
-
-## 🌐 Live Demo
-
-Visit the live portfolio at: [Your Portfolio URL]
-
-## 📧 Contact
+## Contact
 
 - **Email**: mcsjmtech@gmail.com
 - **LinkedIn**: [Mark Louie Carnaje](https://www.linkedin.com/in/mark-louie-carnaje-983514198/)
 - **GitHub**: [makloy143](https://github.com/makloy143)
 
-## 📄 License
-
-This project is private and proprietary. All rights reserved.
-
 ---
 
-Built with ❤️ using React, TypeScript, and Vite
+Built with Next.js & Tailwind CSS
