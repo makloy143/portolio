@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { navItems, siteConfig } from "@/lib/data";
 
 export function Footer() {
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState<string | null>(null);
 
   useEffect(() => {
     const update = () => {
@@ -24,17 +24,17 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-[var(--border)] py-12 md:py-16">
+    <footer className="border-t border-border py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10 mb-12">
           <div>
             <a
               href="#home"
-              className="font-serif italic text-2xl text-[var(--foreground)]"
+              className="font-serif italic text-2xl text-foreground"
             >
               {siteConfig.shortName}
             </a>
-            <p className="mt-4 text-[var(--muted)] max-w-md leading-relaxed font-sans">
+            <p className="mt-4 text-muted-foreground max-w-md leading-relaxed font-sans">
               Full Stack Web Developer & IT Support Specialist from the{" "}
               {siteConfig.location} — building React.js, Node.js, and REST API
               applications for teams everywhere.
@@ -46,7 +46,7 @@ export function Footer() {
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                  className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {item.name}
                 </a>
@@ -57,7 +57,7 @@ export function Footer() {
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 GitHub
               </a>
@@ -67,7 +67,7 @@ export function Footer() {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 LinkedIn
               </a>
@@ -75,7 +75,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 Email
               </a>
@@ -83,16 +83,16 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-[var(--border)] font-sans">
-          <p className="text-sm text-[var(--muted)]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-border font-sans">
+          <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
-          <p className="text-sm text-[var(--muted)]">
-            Manila, PH — {time || "--:--:--"}
+          <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+            Manila, PH{time ? ` — ${time}` : ""}
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+            className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
           >
             Back to top ↑
           </button>

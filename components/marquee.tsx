@@ -9,7 +9,7 @@ export function Marquee() {
         {items.map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="flex items-center gap-8 text-xs uppercase tracking-[0.2em] text-[var(--muted)] whitespace-nowrap font-sans"
+            className="flex items-center gap-8 text-xs uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap font-sans"
           >
             {item}
             <span className="text-[var(--muted-light)]">✳</span>

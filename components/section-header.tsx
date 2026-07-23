@@ -22,7 +22,7 @@ export function SectionHeader({
       </p>
       {hasTitle && (
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl tracking-tight text-[var(--foreground)]">
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl tracking-tight text-foreground">
             {title}
             {emphasis && (
               <>
@@ -32,7 +32,7 @@ export function SectionHeader({
             )}
           </h2>
           {count !== undefined && (
-            <span className="text-sm text-[var(--muted)] font-sans">
+            <span className="text-sm text-muted-foreground font-sans">
               ({String(count).padStart(2, "0")})
             </span>
           )}

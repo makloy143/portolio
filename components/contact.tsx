@@ -4,8 +4,15 @@ import { FormEvent, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { siteConfig } from "@/lib/data";
 import { SectionHeader } from "@/components/section-header";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 type FormState = "idle" | "loading" | "success" | "error";
+
+const fieldClassName =
+  "rounded-none border-0 border-b border-border bg-transparent px-0 shadow-none focus-visible:border-foreground focus-visible:ring-0 dark:bg-transparent";
 
 export function Contact() {
   const [formState, setFormState] = useState<FormState>("idle");
@@ -72,10 +79,7 @@ export function Contact() {
           <div>
             <div className="flex flex-wrap gap-x-8 gap-y-4 mb-8 font-sans">
               <a href={`mailto:${siteConfig.email}`} className="editorial-link">
-                Say hello ↗
-              </a>
-              <a href={`mailto:${siteConfig.email}`} className="editorial-link">
-                Email ↗
+                Email me ↗
               </a>
               <a
                 href={siteConfig.github}
@@ -94,77 +98,77 @@ export function Contact() {
                 LinkedIn ↗
               </a>
             </div>
-            <p className="text-sm text-[var(--muted)] font-sans">
+            <p className="text-sm text-muted-foreground font-sans">
               Usually replies within a day
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5 font-sans">
-            <div className="grid sm:grid-cols-2 gap-5">
+          <form onSubmit={handleSubmit} className="space-y-6 font-sans">
+            <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label
+                <Label
                   htmlFor="contact-name"
-                  className="text-xs uppercase tracking-[0.14em] text-[var(--muted)]"
+                  className="text-xs uppercase tracking-[0.14em] text-muted-foreground font-normal"
                 >
                   Name
-                </label>
-                <input
+                </Label>
+                <Input
                   id="contact-name"
                   name="name"
                   type="text"
                   required
                   autoComplete="name"
-                  className="w-full px-0 py-3 bg-transparent border-b border-[var(--border)] focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                  className={fieldClassName}
                   placeholder="Your name"
                 />
               </div>
               <div className="space-y-2">
-                <label
+                <Label
                   htmlFor="contact-email"
-                  className="text-xs uppercase tracking-[0.14em] text-[var(--muted)]"
+                  className="text-xs uppercase tracking-[0.14em] text-muted-foreground font-normal"
                 >
                   Email
-                </label>
-                <input
+                </Label>
+                <Input
                   id="contact-email"
                   name="email"
                   type="email"
                   required
                   autoComplete="email"
-                  className="w-full px-0 py-3 bg-transparent border-b border-[var(--border)] focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                  className={fieldClassName}
                   placeholder="you@email.com"
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label
+              <Label
                 htmlFor="contact-subject"
-                className="text-xs uppercase tracking-[0.14em] text-[var(--muted)]"
+                className="text-xs uppercase tracking-[0.14em] text-muted-foreground font-normal"
               >
                 Subject
-              </label>
-              <input
+              </Label>
+              <Input
                 id="contact-subject"
                 name="subject"
                 type="text"
                 required
-                className="w-full px-0 py-3 bg-transparent border-b border-[var(--border)] focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                className={fieldClassName}
                 placeholder="Project inquiry"
               />
             </div>
             <div className="space-y-2">
-              <label
+              <Label
                 htmlFor="contact-message"
-                className="text-xs uppercase tracking-[0.14em] text-[var(--muted)]"
+                className="text-xs uppercase tracking-[0.14em] text-muted-foreground font-normal"
               >
                 Message
-              </label>
-              <textarea
+              </Label>
+              <Textarea
                 id="contact-message"
                 name="message"
                 rows={4}
                 required
-                className="w-full px-0 py-3 bg-transparent border-b border-[var(--border)] focus:outline-none focus:border-[var(--foreground)] transition-colors resize-none"
+                className={`${fieldClassName} min-h-28 resize-none`}
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -174,28 +178,29 @@ export function Contact() {
                 role="status"
                 className={`text-sm ${
                   formState === "error"
-                    ? "text-red-700"
-                    : "text-[var(--muted)]"
+                    ? "text-destructive"
+                    : "text-muted-foreground"
                 }`}
               >
                 {feedback}
               </p>
             )}
 
-            <button
+            <Button
               type="submit"
+              variant="outline"
               disabled={formState === "loading"}
-              className="editorial-link disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
+              className="rounded-none border-0 border-b border-[var(--border-strong)] bg-transparent px-0 uppercase tracking-[0.04em] shadow-none hover:bg-transparent hover:opacity-60"
             >
               {formState === "loading" ? (
                 <>
-                  <Loader2 size={14} className="animate-spin" />
+                  <Loader2 className="size-4 animate-spin" />
                   Sending...
                 </>
               ) : (
                 "Send message ↗"
               )}
-            </button>
+            </Button>
           </form>
         </div>
       </div>

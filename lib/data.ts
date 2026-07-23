@@ -116,7 +116,7 @@ export const projects: Project[] = [
     title: "Support Ticketing System",
     desc: "Full-stack IT support platform where students and employees submit tickets, with role-based authentication and an admin control panel for agents to manage and resolve requests.",
     tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    image: "/projects/support-ticketing.svg",
+    image: "/projects/support-ticketing.png",
     link: "https://cociligan.netlify.app/",
     github: "https://github.com/makloy143/ticketing-system",
     category: "application",
@@ -125,7 +125,7 @@ export const projects: Project[] = [
     title: "OneSolutions Attendance",
     desc: "Workforce attendance management system with secure login, real-time monitoring, attendance reports, and role-based dashboards for administrators and employees.",
     tech: ["React", "Node.js", "Express", "MySQL", "JWT"],
-    image: "/projects/attendance-system.svg",
+    image: "/projects/onesolutions-attendance.png",
     github: "https://github.com/makloy143/onesolutions-attendance",
     category: "application",
   },
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     title: "IMCC Enrollment System",
     desc: "Student enrollment platform for managing student records, enrollment workflows, and CRUD operations with authentication and structured admin controls.",
     tech: ["React", "Node.js", "Express", "CRUD", "Authentication"],
-    image: "/projects/enrollment-system.svg",
+    image: "/projects/imcc-enrollment-system.png",
     github: "https://github.com/makloy143/imcc-enrollment-system",
     category: "application",
   },
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     title: "COC Attendance",
     desc: "College attendance monitoring system with user authentication, attendance tracking, reporting, and admin dashboards for faculty and administrators.",
     tech: ["React", "Node.js", "MySQL", "REST API"],
-    image: "/projects/attendance-system.svg",
+    image: "/projects/coc-attendance.png",
     github: "https://github.com/makloy143/COCAttendance",
     category: "application",
   },
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     title: "Barcode Attendance System",
     desc: "Attendance system with barcode scanning integration, database-backed record keeping, and reporting for organizations tracking employee or student check-ins.",
     tech: ["React", "Node.js", "Barcode Scanner", "MySQL"],
-    image: "/projects/barcode-attendance.svg",
+    image: "/projects/barcode-attendance.png",
     github: "https://github.com/makloy143/Barcode-Attendance-System",
     category: "application",
   },
@@ -157,7 +157,7 @@ export const projects: Project[] = [
     title: "One Solutions Backend",
     desc: "Express.js REST API backend powering One Solutions applications — structured with routes, controllers, models, middleware, and database integration.",
     tech: ["Node.js", "Express.js", "REST API", "MongoDB"],
-    image: "/projects/ticketing-system.svg",
+    image: "/projects/one-solutions-backend.png",
     github: "https://github.com/makloy143/one-solutions-backend",
     category: "application",
   },
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     title: "OneSolutions Time Tracking",
     desc: "Workforce time tracking web application for employee clock-in, scheduling, and hours management across client organizations.",
     tech: ["Next.js", "React", "TypeScript"],
-    image: "/projects/one-solutions-time.svg",
+    image: "/projects/one-solutions-time.png",
     link: "https://time.onesolutions.net/",
     category: "application",
   },
@@ -173,7 +173,7 @@ export const projects: Project[] = [
     title: "Help-Bankruptcy.com",
     desc: "Bankruptcy attorney website for Timothy J. McGary — Chapter 7, 11, and 13 debt relief services for clients across Northern Virginia and D.C.",
     tech: ["WordPress", "Responsive Design", "SEO"],
-    image: "/projects/help-bankruptcy.svg",
+    image: "/projects/help-bankruptcy.png",
     link: "https://help-bankruptcy.com/",
     category: "website",
   },
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     title: "Jeffrey D. McGary, CPA",
     desc: "Professional site for tax preparation, accounting, and financial services serving individuals and businesses in Vienna, VA.",
     tech: ["WordPress", "Responsive Design", "SEO"],
-    image: "/projects/mcgary-cpa.svg",
+    image: "/projects/mcgary-cpa.png",
     link: "https://www.mcgary.biz/",
     category: "website",
   },
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     title: "Title One & Escrow",
     desc: "Title company website showcasing escrow services, settlement support, and real estate closing solutions in Vienna, VA.",
     tech: ["WordPress", "Responsive Design", "SEO"],
-    image: "/projects/title-one.svg",
+    image: "/projects/title-one.png",
     link: "https://title1inc.com/",
     category: "website",
   },
@@ -197,7 +197,7 @@ export const projects: Project[] = [
     title: "One Solutions",
     desc: "IT support and VoIP telecommunications provider site highlighting managed services, uptime guarantees, and business phone solutions.",
     tech: ["WordPress", "Responsive Design", "Web Performance"],
-    image: "/projects/one-solutions.svg",
+    image: "/projects/one-solutions.png",
     link: "https://onesolutions.net/",
     category: "website",
   },
@@ -205,7 +205,7 @@ export const projects: Project[] = [
     title: "Timothy J. McGary, Attorney",
     desc: "Business and bankruptcy law firm website for a top-rated Northern Virginia attorney with 42+ years of experience.",
     tech: ["WordPress", "Responsive Design", "SEO"],
-    image: "/projects/mcgary-law.svg",
+    image: "/projects/mcgary-law.png",
     link: "https://www.mcgary.com/",
     category: "website",
   },
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     title: "Patel Law VA",
     desc: "Personal injury and criminal defense attorney website for Bhavik D. Patel, serving clients in Fairfax and Northern Virginia.",
     tech: ["WordPress", "Responsive Design", "SEO"],
-    image: "/projects/patel-law.svg",
+    image: "/projects/patel-law.png",
     link: "https://patellawva.com/",
     category: "website",
   },
@@ -227,6 +227,27 @@ export const featuredGithubRepos = [
   "imcc-enrollment-system",
   "Barcode-Attendance-System",
 ];
+
+export const featuredProjectTitles = [
+  "Support Ticketing System",
+  "OneSolutions Time Tracking",
+  "Help-Bankruptcy.com",
+] as const;
+
+export function getFeaturedProjects(): Project[] {
+  return featuredProjectTitles
+    .map((title) => projects.find((p) => p.title === title))
+    .filter((p): p is Project => Boolean(p));
+}
+
+export function getRemainingProjects(): Project[] {
+  const featuredSet = new Set<string>(featuredProjectTitles);
+  return projects.filter((p) => !featuredSet.has(p.title));
+}
+
+export function getProjectIndex(title: string) {
+  return projects.findIndex((p) => p.title === title);
+}
 
 export function isValidUrl(url?: string): url is string {
   return Boolean(url && url !== "#");
