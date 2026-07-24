@@ -4,7 +4,7 @@ export const siteConfig = {
   title: "Mark Louie Carnaje — Full Stack Web Developer",
   description:
     "Full Stack Web Developer and IT Support Specialist with 6+ years of combined experience building React.js and Node.js applications, REST APIs, and production-ready web platforms.",
-  url: "https://makloy.dev",
+  url: "https://mlcarnaje.site",
   email: "mcsjmtech@gmail.com",
   github: "https://github.com/makloy143",
   linkedin:
