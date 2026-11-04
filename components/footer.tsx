@@ -1,101 +1,46 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import { navItems, siteConfig } from "@/lib/data";
+import { LocalTime } from "@/components/local-time";
+import { SocialLinks } from "@/components/social-links";
 
 export function Footer() {
-  const [time, setTime] = useState<string | null>(null);
-
-  useEffect(() => {
-    const update = () => {
-      setTime(
-        new Intl.DateTimeFormat("en-PH", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-          timeZone: "Asia/Manila",
-        }).format(new Date())
-      );
-    };
-    update();
-    const interval = setInterval(update, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <footer className="border-t border-border py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-10 mb-12">
-          <div>
-            <a
-              href="#home"
-              className="font-serif italic text-2xl text-foreground"
-            >
-              {siteConfig.shortName}
+    <footer className="border-t bg-surface/50">
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-sm">
+            <a href="#home" className="flex items-center gap-2.5">
+              <span className="grid size-8 place-items-center rounded-lg bg-primary font-mono text-xs font-bold text-primary-foreground">
+                {siteConfig.initials}
+              </span>
+              <span className="font-semibold tracking-tight">{siteConfig.name}</span>
             </a>
-            <p className="mt-4 text-muted-foreground max-w-md leading-relaxed font-sans">
-              Full Stack Web Developer & IT Support Specialist from the{" "}
-              {siteConfig.location} — building React.js, Node.js, and REST API
-              applications for teams everywhere.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              {siteConfig.role} building React, Node.js, and REST API applications
+              for teams everywhere.
             </p>
+            <SocialLinks className="mt-5" />
           </div>
 
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 font-sans">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-12 gap-y-3 text-sm">
             {navItems.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {item.name}
-                </a>
-              </li>
+              <a key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">
+                {item.name}
+              </a>
             ))}
-            <li>
-              <a
-                href={siteConfig.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
-              >
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href={siteConfig.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Email
-              </a>
-            </li>
-          </ul>
+            <Link href="/resume" className="text-muted-foreground hover:text-foreground">
+              Résumé
+            </Link>
+          </nav>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-border font-sans">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} {siteConfig.name}
+        <div className="mt-10 flex flex-col gap-2 border-t pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-            Manila, PH{time ? ` — ${time}` : ""}
+          <p>
+            Manila, PH · <LocalTime />
           </p>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Back to top ↑
-          </button>
         </div>
       </div>
     </footer>

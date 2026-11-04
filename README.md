@@ -4,27 +4,34 @@ A modern, professional portfolio website built with **Next.js**, TypeScript, and
 
 ## Features
 
-- **Next.js App Router** — Server-rendered with optimized performance and SEO
-- **Responsive Design** — Works seamlessly across desktop, tablet, and mobile
-- **Dark / Light Mode** — Theme toggle with system preference support
-- **Smooth Animations** — Framer Motion for polished interactions
-- **Modular Architecture** — Clean component structure for easy maintenance
+- **Next.js App Router** — static pages, SEO metadata, JSON-LD, sitemap, robots, OG image
+- **Modern UI** — Geist type, indigo accent, light/dark themes, responsive down to 320px
+- **Project filter** — featured work plus filterable web apps / client websites
+- **Printable résumé** — `/resume` renders from the same data, with Print and Download PDF
+- **Working contact form** — shared client/server validation, honeypot, rate limit, Web3Forms delivery (falls back to the visitor's email app)
+- **Accessible** — skip link, active-section nav, focus states, reduced-motion support
 
 ## Sections
 
-- **Home** — Hero with availability badge and key highlights
-- **About** — Background, stats, and resume download
-- **Skills** — Frontend, backend, and tools proficiency
-- **Projects** — Featured portfolio work with tech stacks
-- **Experience** — Work history timeline
-- **Contact** — Contact form and social links
+Home · Work · About · Experience · Skills · Contact · `/resume`
+
+## Editing content
+
+All copy lives in [`lib/data.ts`](lib/data.ts) — profile, experience, skills, and projects.
+The site, `/resume`, and the PDF all read from it. After editing, regenerate the PDF:
+
+```bash
+npm run dev          # in one terminal
+npm run resume:pdf   # writes public/resume.pdf from /resume
+```
+
+Projects without a public screenshot get a generated cover; add `image: "/projects/<file>.png"` to use a real one.
 
 ## Tech Stack
 
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **Animations**: Framer Motion
+- **Framework**: Next.js 15 · React 19 · TypeScript
+- **Styling**: Tailwind CSS 4 · shadcn/ui (Base UI)
+- **Animation**: Framer Motion
 - **Icons**: Lucide React
 - **Theming**: next-themes
 
@@ -38,7 +45,9 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3001](http://localhost:3001) in your browser.
+
+Set `WEB3FORMS_ACCESS_KEY` (see `.env.example`) to deliver contact-form messages by email.
 
 ## Scripts
 
@@ -48,6 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `npm run build` | Create production build |
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint              |
+| `npm run resume:pdf` | Regenerate `public/resume.pdf` |
 
 ## Contact
 

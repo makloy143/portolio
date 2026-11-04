@@ -13,14 +13,15 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#f8f6f1",
-          color: "#1a1614",
-          fontSize: 20,
-          fontStyle: "italic",
-          fontFamily: "Georgia, serif",
+          background: "#4f46e5",
+          color: "#ffffff",
+          borderRadius: 8,
+          fontSize: 15,
+          fontWeight: 700,
+          letterSpacing: -0.5,
         }}
       >
-        M
+        MC
       </div>
     ),
     size

@@ -14,42 +14,37 @@ export default function OpenGraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "space-between",
           padding: 80,
-          background: "#f8f6f1",
-          color: "#1a1614",
+          background: "linear-gradient(135deg, #0f1117 0%, #1e1b4b 100%)",
+          color: "#f8fafc",
         }}
       >
-        <div
-          style={{
-            fontSize: 28,
-            fontStyle: "italic",
-            fontFamily: "Georgia, serif",
-            marginBottom: 32,
-          }}
-        >
-          {siteConfig.shortName}
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: 16,
+              background: "#6366f1",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 28,
+              fontWeight: 700,
+            }}
+          >
+            MC
+          </div>
+          <div style={{ fontSize: 30, fontWeight: 600 }}>{siteConfig.name}</div>
         </div>
-        <div
-          style={{
-            fontSize: 56,
-            fontFamily: "Georgia, serif",
-            lineHeight: 1.1,
-            marginBottom: 24,
-            maxWidth: 900,
-          }}
-        >
-          Turning ideas into high-performance web products.
-        </div>
-        <div
-          style={{
-            fontSize: 22,
-            color: "#6b6560",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-          }}
-        >
-          Full Stack Web Developer · Next.js · React
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 68, fontWeight: 700, lineHeight: 1.08, maxWidth: 950 }}>
+            I build reliable web apps with React & Node.js.
+          </div>
+          <div style={{ marginTop: 28, fontSize: 28, color: "#a5b4fc" }}>
+            Full Stack Web Developer · 6+ years · Remote
+          </div>
         </div>
       </div>
     ),

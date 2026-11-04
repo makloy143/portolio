@@ -1,85 +1,164 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { FileText, Menu } from "lucide-react";
 import { navItems, siteConfig } from "@/lib/data";
+import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    const onScroll = () => {
+      if (window.scrollY < 200) setActive(null);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [ids]);
+
+  return active;
+}
+
+const sectionIds = navItems.map((item) => item.href.slice(1));
 
 export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const active = useActiveSection(sectionIds);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <a
-          href="#home"
-          className="font-serif italic text-xl sm:text-2xl text-foreground tracking-tight"
-        >
-          {siteConfig.shortName}
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "border-b bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/70"
+          : "border-b border-transparent"
+      )}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
+        <a href="#home" className="group flex items-center gap-2.5" aria-label={`${siteConfig.name} — home`}>
+          <span className="grid size-8 place-items-center rounded-lg bg-primary font-mono text-xs font-bold text-primary-foreground transition-transform group-hover:scale-105">
+            {siteConfig.initials}
+          </span>
+          <span className="hidden text-sm font-semibold tracking-tight sm:inline">
+            {siteConfig.name}
+          </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <ul className="flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors font-sans"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <ThemeToggle />
-          <a href="#contact" className="editorial-link text-xs">
-            Say hello
-          </a>
+        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => {
+            const isActive = active === item.href.slice(1);
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "true" : undefined}
+                className={cn(
+                  "rounded-full px-3.5 py-1.5 text-sm transition-colors",
+                  isActive
+                    ? "bg-accent font-medium text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {item.name}
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-1.5">
           <ThemeToggle />
-          <Sheet>
+          <Link
+            href="/resume"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "hidden h-9 rounded-full px-4 sm:inline-flex"
+            )}
+          >
+            <FileText className="size-4" />
+            Résumé
+          </Link>
+
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               render={
                 <Button
                   variant="ghost"
-                  size="icon-sm"
+                  size="icon"
                   aria-label="Open menu"
-                  className="text-foreground"
+                  className="rounded-full md:hidden"
                 />
               }
             >
-              <Menu className="size-4" />
+              <Menu className="size-5" />
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:max-w-xs">
+            <SheetContent side="right" className="w-full max-w-xs">
               <SheetHeader>
-                <SheetTitle className="font-serif italic text-left">
-                  Menu
-                </SheetTitle>
+                <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col px-4 pb-6">
+              <nav aria-label="Mobile" className="flex flex-col gap-1 px-4">
                 {navItems.map((item) => (
                   <a
-                    key={item.name}
+                    key={item.href}
                     href={item.href}
-                    className="px-2 py-3 text-sm uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground transition-colors font-sans border-b border-border"
+                    onClick={(event) => {
+                      // The open dialog locks scrolling; close first, then jump once the lock is released.
+                      event.preventDefault();
+                      setOpen(false);
+                      setTimeout(() => {
+                        document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+                        history.replaceState(null, "", item.href);
+                      }, 250);
+                    }}
+                    className={cn(
+                      "rounded-lg px-3 py-3 text-base transition-colors hover:bg-muted",
+                      active === item.href.slice(1) ? "font-medium text-primary" : "text-foreground"
+                    )}
                   >
                     {item.name}
                   </a>
                 ))}
-                <a
-                  href="#contact"
-                  className="px-2 py-3 text-sm uppercase tracking-[0.14em] text-foreground font-sans"
-                >
-                  Say hello
-                </a>
               </nav>
+              <div className="mt-auto px-4 pb-6">
+                <Link
+                  href="/resume"
+                  onClick={() => setOpen(false)}
+                  className={cn(buttonVariants({ size: "lg" }), "h-11 w-full rounded-full")}
+                >
+                  <FileText className="size-4" />
+                  View résumé
+                </Link>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
