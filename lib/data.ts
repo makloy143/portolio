@@ -1,258 +1,316 @@
+/**
+ * Single source of truth for the portfolio and the résumé.
+ * Everything rendered on `/` and `/resume` (and the generated PDF) comes from here.
+ */
+
 export const siteConfig = {
   name: "Mark Louie Carnaje",
-  shortName: "ML Carnaje",
+  initials: "MC",
+  role: "Full Stack Web Developer",
   title: "Mark Louie Carnaje — Full Stack Web Developer",
   description:
     "Full Stack Web Developer and IT Support Specialist with 6+ years of combined experience building React.js and Node.js applications, REST APIs, and production-ready web platforms.",
   url: "https://mlcarnaje.site",
   email: "mcsjmtech@gmail.com",
   github: "https://github.com/makloy143",
-  linkedin:
-    "https://www.linkedin.com/in/mark-louie-carnaje-983514198/",
-  profileImage:
-    "https://avatars.githubusercontent.com/u/79638119?v=4",
+  githubHandle: "makloy143",
+  linkedin: "https://www.linkedin.com/in/mark-louie-carnaje-983514198/",
+  profileImage: "https://avatars.githubusercontent.com/u/79638119?v=4",
   resumePath: "/resume.pdf",
+  resumeFileName: "Mark-Louie-Carnaje-Resume.pdf",
   location: "Philippines",
-};
-
-export const experienceStats = [
-  { value: "6+", label: "Years combined experience" },
-  { value: "4+", label: "Years IT support" },
-  { value: "2+", label: "Years web development" },
-];
+  timeZone: "Asia/Manila",
+  availability: "Open to remote full-time & contract roles",
+} as const;
 
 export const navItems = [
   { name: "Work", href: "#projects" },
   { name: "About", href: "#about" },
-  { name: "Stack", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
-];
+] as const;
 
-export const marqueeItems = [
-  "React.js",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "MySQL",
-  "REST APIs",
-  "JWT Auth",
-  "Tailwind CSS",
-  "WordPress",
-  "Linux",
-  "Nginx",
-  "Git",
-  "Remote",
-];
+export const summary =
+  "Full Stack Web Developer and IT Support Specialist with 6+ years of combined experience across IT infrastructure, technical support, and full-stack development. I build and deploy scalable web applications with React.js, Node.js, Express.js, MongoDB, MySQL, and RESTful APIs — from authentication and dashboards to Linux/Nginx production servers.";
 
-export const skillCategories = [
+export type ServiceIcon = "frontend" | "backend" | "infra" | "support";
+
+export const services: {
+  icon: ServiceIcon;
+  title: string;
+  description: string;
+}[] = [
   {
-    id: "a",
+    icon: "frontend",
     title: "Frontend Development",
     description:
-      "Responsive interfaces with React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, and React Router — focused on clean UX, state management, and mobile-first design.",
+      "Responsive, accessible interfaces with React, Next.js, TypeScript, and Tailwind CSS — clean UX, solid state management, mobile-first.",
   },
   {
-    id: "b",
+    icon: "backend",
     title: "Backend & APIs",
     description:
-      "Scalable server-side systems with Node.js, Express.js, PHP, and RESTful APIs — including JWT authentication, CRUD operations, file uploads, and structured error handling.",
+      "Node.js and Express REST APIs with JWT authentication, role-based access, CRUD workflows, file uploads, and structured error handling.",
   },
   {
-    id: "c",
-    title: "Database & Infrastructure",
+    icon: "infra",
+    title: "Database & Deployment",
     description:
-      "MongoDB, MySQL, and MariaDB for data modeling and queries. Linux server administration, Nginx configuration, VPS deployment, SSL, Git workflows, and production troubleshooting.",
+      "MongoDB and MySQL data modeling, plus Linux server administration, Nginx, VPS deployment, SSL, and production troubleshooting.",
   },
   {
-    id: "d",
-    title: "IT Support & Collaboration",
+    icon: "support",
+    title: "IT Support & Networks",
     description:
-      "Network administration, Active Directory, LDAP, and technical support — plus team collaboration, code reviews, debugging, and working directly with stakeholders to deliver reliable solutions.",
+      "Network administration, Active Directory, LDAP, and end-user support — keeping teams productive and systems reliable.",
   },
 ];
 
-export const stackItems = [
-  "JavaScript (ES6+)",
-  "React.js",
-  "React Router",
-  "React Hooks",
-  "Node.js",
-  "Express.js",
-  "Next.js",
-  "TypeScript",
-  "HTML5",
-  "CSS3",
-  "Tailwind CSS",
-  "Bootstrap",
-  "MongoDB",
-  "MySQL",
-  "MariaDB",
-  "PHP",
-  "WordPress",
-  "JWT Authentication",
-  "REST APIs",
-  "Git",
-  "GitHub",
-  "Linux",
-  "Nginx",
-  "Postman",
-  "VS Code",
-  "Responsive Design",
-  "Web Performance",
+export type ExperienceEntry = {
+  role: string;
+  organization: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+  tech: string[];
+};
+
+/**
+ * Edit `organization` and `period` with exact employer names and dates.
+ * Entries are rendered on the site, the /resume page, and the PDF.
+ */
+export const experience: ExperienceEntry[] = [
+  {
+    role: "Full Stack Web Developer",
+    organization: "One Solutions & client projects (Remote)",
+    period: "2+ years · Present",
+    summary:
+      "Design, build, and maintain web applications and business websites for US-based clients and internal teams.",
+    highlights: [
+      "Built full-stack attendance, time-tracking, ticketing, and enrollment systems with React, Node.js, Express, and MySQL/MongoDB.",
+      "Implemented JWT authentication, role-based dashboards, reporting, and REST APIs consumed by multiple front-ends.",
+      "Delivered and maintain WordPress sites for law, CPA, title/escrow, and IT service firms in Northern Virginia — with a focus on SEO and performance.",
+      "Deploy and operate apps on Linux VPS with Nginx, SSL, and Git-based workflows.",
+    ],
+    tech: ["React", "Next.js", "Node.js", "Express", "MySQL", "MongoDB", "WordPress", "Nginx"],
+  },
+  {
+    role: "IT Support Specialist",
+    organization: "Education & enterprise environments",
+    period: "4+ years",
+    summary:
+      "Provided technical support and infrastructure administration for staff, faculty, and students.",
+    highlights: [
+      "Administered networks, user accounts, Active Directory, and LDAP services.",
+      "Troubleshot hardware, software, and connectivity issues and documented recurring fixes.",
+      "Identified workflow gaps that led to building internal tools such as ticketing and attendance systems.",
+    ],
+    tech: ["Active Directory", "LDAP", "Networking", "Linux", "Windows"],
+  },
 ];
+
+export const skillGroups = [
+  {
+    title: "Frontend",
+    items: ["JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "React Router", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+  },
+  {
+    title: "Backend",
+    items: ["Node.js", "Express.js", "PHP", "REST APIs", "JWT Authentication", "WordPress"],
+  },
+  {
+    title: "Databases",
+    items: ["MongoDB", "MySQL", "PostgreSQL", "Prisma", "MariaDB"],
+  },
+  {
+    title: "DevOps & Tools",
+    items: ["Git", "GitHub", "Linux", "Nginx", "VPS / SSL", "Postman", "VS Code"],
+  },
+  {
+    title: "IT & Infrastructure",
+    items: ["Network Administration", "Active Directory", "LDAP", "Technical Support"],
+  },
+] as const;
+
+export const techStrip = [
+  "React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB",
+  "MySQL", "PostgreSQL", "Tailwind CSS", "REST APIs", "WordPress", "Linux", "Nginx",
+];
+
+export type ProjectCategory = "application" | "website";
 
 export type Project = {
+  slug: string;
   title: string;
-  desc: string;
+  description: string;
   tech: string[];
-  image: string;
-  link?: string;
-  github?: string;
-  category: "application" | "website";
+  /** Screenshot in /public/projects. Omit to render a generated cover. */
+  image?: string;
+  category: ProjectCategory;
+  featured?: boolean;
+  /** Public live URL. */
+  live?: string;
+  /** Public source repository. */
+  repo?: string;
+  /** Source exists but is not public (client / internal work). */
+  privateRepo?: boolean;
 };
 
 export const projects: Project[] = [
   {
+    slug: "support-ticketing",
     title: "Support Ticketing System",
-    desc: "Full-stack IT support platform where students and employees submit tickets, with role-based authentication and an admin control panel for agents to manage and resolve requests.",
+    description:
+      "Full-stack IT support platform where students and employees submit tickets, with role-based authentication and an admin panel for agents to triage and resolve requests.",
     tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     image: "/projects/support-ticketing.png",
-    link: "https://cociligan.netlify.app/",
-    github: "https://github.com/makloy143/ticketing-system",
     category: "application",
+    featured: true,
+    live: "https://cociligan.netlify.app/",
+    privateRepo: true,
   },
   {
-    title: "OneSolutions Attendance",
-    desc: "Workforce attendance management system with secure login, real-time monitoring, attendance reports, and role-based dashboards for administrators and employees.",
-    tech: ["React", "Node.js", "Express", "MySQL", "JWT"],
-    image: "/projects/onesolutions-attendance.png",
-    github: "https://github.com/makloy143/onesolutions-attendance",
-    category: "application",
-  },
-  {
-    title: "IMCC Enrollment System",
-    desc: "Student enrollment platform for managing student records, enrollment workflows, and CRUD operations with authentication and structured admin controls.",
-    tech: ["React", "Node.js", "Express", "CRUD", "Authentication"],
-    image: "/projects/imcc-enrollment-system.png",
-    github: "https://github.com/makloy143/imcc-enrollment-system",
-    category: "application",
-  },
-  {
-    title: "COC Attendance",
-    desc: "College attendance monitoring system with user authentication, attendance tracking, reporting, and admin dashboards for faculty and administrators.",
-    tech: ["React", "Node.js", "MySQL", "REST API"],
-    image: "/projects/coc-attendance.png",
-    github: "https://github.com/makloy143/COCAttendance",
-    category: "application",
-  },
-  {
-    title: "Barcode Attendance System",
-    desc: "Attendance system with barcode scanning integration, database-backed record keeping, and reporting for organizations tracking employee or student check-ins.",
-    tech: ["React", "Node.js", "Barcode Scanner", "MySQL"],
-    image: "/projects/barcode-attendance.png",
-    github: "https://github.com/makloy143/Barcode-Attendance-System",
-    category: "application",
-  },
-  {
-    title: "One Solutions Backend",
-    desc: "Express.js REST API backend powering One Solutions applications — structured with routes, controllers, models, middleware, and database integration.",
-    tech: ["Node.js", "Express.js", "REST API", "MongoDB"],
-    image: "/projects/one-solutions-backend.png",
-    github: "https://github.com/makloy143/one-solutions-backend",
-    category: "application",
-  },
-  {
+    slug: "onesolutions-time",
     title: "OneSolutions Time Tracking",
-    desc: "Workforce time tracking web application for employee clock-in, scheduling, and hours management across client organizations.",
+    description:
+      "Workforce time-tracking app for employee clock-in, scheduling, and hours management across client organizations.",
     tech: ["Next.js", "React", "TypeScript"],
     image: "/projects/one-solutions-time.png",
-    link: "https://time.onesolutions.net/",
     category: "application",
+    featured: true,
+    live: "https://time.onesolutions.net/",
+    privateRepo: true,
   },
   {
+    slug: "help-bankruptcy",
     title: "Help-Bankruptcy.com",
-    desc: "Bankruptcy attorney website for Timothy J. McGary — Chapter 7, 11, and 13 debt relief services for clients across Northern Virginia and D.C.",
+    description:
+      "Bankruptcy attorney website for Timothy J. McGary — Chapter 7, 11, and 13 debt-relief services across Northern Virginia and D.C.",
     tech: ["WordPress", "Responsive Design", "SEO"],
     image: "/projects/help-bankruptcy.png",
-    link: "https://help-bankruptcy.com/",
     category: "website",
+    featured: true,
+    live: "https://help-bankruptcy.com/",
   },
   {
+    slug: "coc-attendance",
+    title: "COC Attendance",
+    description:
+      "Admin app for student registration and daily time-in/time-out, with face-recognition and QR kiosk check-in, dashboards, and Excel/PDF attendance reports.",
+    tech: ["Next.js", "PostgreSQL", "Prisma", "Face API", "QR"],
+    category: "application",
+    repo: "https://github.com/makloy143/COCattendance",
+  },
+  {
+    slug: "onesolutions-attendance",
+    title: "OneSolutions Attendance",
+    description:
+      "Workforce attendance management with secure login, real-time monitoring, attendance reports, and role-based dashboards.",
+    tech: ["React", "Node.js", "Express", "MySQL", "JWT"],
+    category: "application",
+    privateRepo: true,
+  },
+  {
+    slug: "imcc-enrollment",
+    title: "IMCC Enrollment System",
+    description:
+      "Student enrollment platform for managing records and enrollment workflows, with authentication and structured admin controls.",
+    tech: ["React", "Node.js", "Express", "Auth"],
+    category: "application",
+    privateRepo: true,
+  },
+  {
+    slug: "barcode-attendance",
+    title: "Barcode Attendance System",
+    description:
+      "Check-in system with barcode scanning, database-backed records, and reporting for employee or student attendance.",
+    tech: ["React", "Node.js", "MySQL", "Barcode"],
+    category: "application",
+    privateRepo: true,
+  },
+  {
+    slug: "one-solutions-backend",
+    title: "One Solutions Backend",
+    description:
+      "Express REST API powering One Solutions apps — routes, controllers, models, middleware, and database integration.",
+    tech: ["Node.js", "Express", "REST API", "MongoDB"],
+    category: "application",
+    privateRepo: true,
+  },
+  {
+    slug: "mcgary-cpa",
     title: "Jeffrey D. McGary, CPA",
-    desc: "Professional site for tax preparation, accounting, and financial services serving individuals and businesses in Vienna, VA.",
+    description:
+      "Professional site for tax preparation, accounting, and financial services for individuals and businesses in Vienna, VA.",
     tech: ["WordPress", "Responsive Design", "SEO"],
     image: "/projects/mcgary-cpa.png",
-    link: "https://www.mcgary.biz/",
     category: "website",
+    live: "https://www.mcgary.biz/",
   },
   {
+    slug: "title-one",
     title: "Title One & Escrow",
-    desc: "Title company website showcasing escrow services, settlement support, and real estate closing solutions in Vienna, VA.",
+    description:
+      "Title company website for escrow, settlement support, and real-estate closing services in Vienna, VA.",
     tech: ["WordPress", "Responsive Design", "SEO"],
     image: "/projects/title-one.png",
-    link: "https://title1inc.com/",
     category: "website",
+    live: "https://title1inc.com/",
   },
   {
+    slug: "one-solutions",
     title: "One Solutions",
-    desc: "IT support and VoIP telecommunications provider site highlighting managed services, uptime guarantees, and business phone solutions.",
-    tech: ["WordPress", "Responsive Design", "Web Performance"],
+    description:
+      "IT support and VoIP provider site highlighting managed services, uptime guarantees, and business phone solutions.",
+    tech: ["WordPress", "Responsive Design", "Performance"],
     image: "/projects/one-solutions.png",
-    link: "https://onesolutions.net/",
     category: "website",
+    live: "https://onesolutions.net/",
   },
   {
+    slug: "mcgary-law",
     title: "Timothy J. McGary, Attorney",
-    desc: "Business and bankruptcy law firm website for a top-rated Northern Virginia attorney with 42+ years of experience.",
+    description:
+      "Business and bankruptcy law firm website for a top-rated Northern Virginia attorney with 42+ years of experience.",
     tech: ["WordPress", "Responsive Design", "SEO"],
     image: "/projects/mcgary-law.png",
-    link: "https://www.mcgary.com/",
     category: "website",
+    live: "https://www.mcgary.com/",
   },
   {
+    slug: "patel-law",
     title: "Patel Law VA",
-    desc: "Personal injury and criminal defense attorney website for Bhavik D. Patel, serving clients in Fairfax and Northern Virginia.",
+    description:
+      "Personal injury and criminal defense attorney website for Bhavik D. Patel, serving Fairfax and Northern Virginia.",
     tech: ["WordPress", "Responsive Design", "SEO"],
     image: "/projects/patel-law.png",
-    link: "https://patellawva.com/",
     category: "website",
+    live: "https://patellawva.com/",
   },
 ];
 
-export const featuredGithubRepos = [
-  "ticketing-system",
-  "onesolutions-attendance",
-  "COCAttendance",
-  "one-solutions-backend",
-  "imcc-enrollment-system",
-  "Barcode-Attendance-System",
-];
-
-export const featuredProjectTitles = [
-  "Support Ticketing System",
-  "OneSolutions Time Tracking",
-  "Help-Bankruptcy.com",
+export const projectFilters = [
+  { id: "all", label: "All" },
+  { id: "application", label: "Web apps" },
+  { id: "website", label: "Client websites" },
 ] as const;
 
-export function getFeaturedProjects(): Project[] {
-  return featuredProjectTitles
-    .map((title) => projects.find((p) => p.title === title))
-    .filter((p): p is Project => Boolean(p));
+export type ProjectFilter = (typeof projectFilters)[number]["id"];
+
+export const featuredProjects = projects.filter((p) => p.featured);
+export const otherProjects = projects.filter((p) => !p.featured);
+
+export function filterProjects(list: Project[], filter: ProjectFilter) {
+  return filter === "all" ? list : list.filter((p) => p.category === filter);
 }
 
-export function getRemainingProjects(): Project[] {
-  const featuredSet = new Set<string>(featuredProjectTitles);
-  return projects.filter((p) => !featuredSet.has(p.title));
+export function displayUrl(url: string) {
+  return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 }
 
-export function getProjectIndex(title: string) {
-  return projects.findIndex((p) => p.title === title);
-}
-
-export function isValidUrl(url?: string): url is string {
-  return Boolean(url && url !== "#");
-}
-
-export function formatProjectNumber(index: number) {
-  return String(index + 1).padStart(2, "0");
-}
+export const stats = [
+  { value: "6+", label: "Years combined experience" },
+  { value: String(projects.length), label: "Projects shipped" },
+  { value: "4+", label: "Years in IT support" },
+];
